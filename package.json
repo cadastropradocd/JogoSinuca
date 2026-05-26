@@ -1,12 +1,12 @@
 {
-    "name": "sinuca-online",
+    "name": "sinuca-workers",
     "version": "1.0.0",
-    "description": "Jogo de sinuca 8-ball multiplayer online",
-    "main": "server/server.js",
+    "private": true,
     "scripts": {
-        "start": "node server/server.js"
+        "deploy": "wrangler deploy"
     },
-    "dependencies": {
-        "ws": "^8.14.0"
+    "devDependencies": {
+        "@cloudflare/workers-types": "^4.20241106.0",
+        "wrangler": "^3.97.0"
     }
 }
