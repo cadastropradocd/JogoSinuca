@@ -1,0 +1,12 @@
+{
+    "name": "sinuca-online",
+    "version": "1.0.0",
+    "description": "Jogo de sinuca 8-ball multiplayer online",
+    "main": "server/server.js",
+    "scripts": {
+        "start": "node server/server.js"
+    },
+    "dependencies": {
+        "ws": "^8.14.0"
+    }
+}

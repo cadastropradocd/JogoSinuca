@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinuca Online 8-Ball</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="menu" class="screen">
+            <h1>🎱 Sinuca Online</h1>
+            <div class="buttons">
+                <button id="createBtn">Criar Sala</button>
+                <button id="joinBtn">Entrar numa Sala</button>
+            </div>
+            <div id="joinForm" class="hidden">
+                <input type="text" id="roomCode" placeholder="Código da sala" maxlength="6">
+                <button id="joinConfirmBtn">Entrar</button>
+            </div>
+        </div>
+<div id="game" class="screen hidden">
+            <div id="header">
+                <span id="roomCodeDisplay">Sala: ---</span>
+                <span id="turnIndicator">Turno: ---</span>
+                <button id="restartBtn" class="hidden">Novo Jogo</button>
+            </div>
+            <canvas id="table"></canvas>
+            <div id="powerBar">
+                <div id="powerFill"></div>
+            </div>
+            <p class="hint">Arraste a bola branca paramir e soltar para tacar</p>
+        </div>
+            <canvas id="table"></canvas>
+            <div id="powerBar">
+                <div id="powerFill"></div>
+            </div>
+            <p class="hint">Arraste a bola branca para mirar e soltar para tacar</p>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
