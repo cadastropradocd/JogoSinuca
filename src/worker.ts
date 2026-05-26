@@ -103,7 +103,8 @@ ca.width=TW;ca.height=TH;
 const pk=[{x:0,y:0},{x:TW/2,y:0},{x:TW,y:0},{x:0,y:TH},{x:TW/2,y:TH},{x:TW,y:TH}];
 
 function con(){
-    ws=new WebSocket((location.protocol==='https'?'wss':'ws')+'//'+location.host);
+    const wsUrl = (location.protocol==='https'?'wss':'ws')+'//'+location.host;
+    ws=new WebSocket(wsUrl);
     ws.onmessage=e=>{const m=JSON.parse(e.data);switch(m.type){
         case'created':case'joined':myId=m.playerId;document.getElementById('roomCodeDisplay').textContent='Sala: '+m.roomCode;showG();break;
         case'state':g=m.state;isMy=g.currentPlayer===myId&&!g.gameOver;upInd();break;
@@ -135,12 +136,18 @@ ren();
 
 async function handleRequest(req: Request, env: Env): Promise<Response> {
     const url = new URL(req.url);
+    const upgrade = req.headers.get('Upgrade') || '';
+    const isWebSocket = upgrade.toLowerCase() === 'websocket';
 
-    if (url.pathname === '/') {
+    if (url.pathname === '/' || url.pathname === '/index.html') {
         return new Response(HTML, { headers: { 'Content-Type': 'text/html' } });
     }
 
-    if (req.headers.get('Upgrade') === 'websocket') {
+    if (isWebSocket) {
+        return handleWebSocket(req);
+    }
+
+    if (url.pathname.startsWith('/ws')) {
         return handleWebSocket(req);
     }
 
